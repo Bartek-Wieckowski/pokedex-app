@@ -1,9 +1,23 @@
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      // staleTime: 60 * 1000,
+      staleTime: 0,
+    },
+  },
+});
 const App = () => {
   return (
-    <div>
-      <h1 className="text-rose-500 text-7xl">test</h1>
-    </div>
+    <QueryClientProvider client={queryClient}>
+      {import.meta.env.MODE === 'development' && (
+        <ReactQueryDevtools initialIsOpen={false} />
+      )}
+      <h1>test</h1>
+    </QueryClientProvider>
   );
-}
+};
 
 export default App;
