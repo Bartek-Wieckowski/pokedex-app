@@ -7,8 +7,7 @@ import SearchBar from '@/components/shared/SearchBar';
 import { Button } from '@/components/ui/button';
 
 const Homepage = () => {
-  const { pokemons, isLoading, isError, handleLoadMore, isButtonLoading } =
-    usePokemons();
+  const { pokemons, isLoading, isError, handleLoadMore, isButtonLoading } = usePokemons();
 
   if (isLoading) {
     return <Loader />;
@@ -26,18 +25,11 @@ const Homepage = () => {
         <HeaderApp />
         <SearchBar />
         <PokemonList pokemons={pokemons} />
-        <div className="mx-4 text-foreground text-[12px]">
-          Loaded pokemons: {pokemons.length}
-        </div>
+        <div className="mx-4 text-foreground text-[12px]">Loaded pokemons: {pokemons.length}</div>
         <div className="flex-center my-4">
-          <Button
-            variant={'outline'}
-            onClick={handleLoadMore}
-            disabled={isButtonLoading}
-            className="relative flex"
-          >
+          <Button variant={'outline'} onClick={handleLoadMore} disabled={isButtonLoading} className="relative flex">
             {isButtonLoading ? (
-              <div className='flex gap-2'>
+              <div className="flex gap-2">
                 <Loader type="text-sm" />
                 <span>Loading...</span>
               </div>
