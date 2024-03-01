@@ -44,3 +44,26 @@ export const getPokemonColorClass = (type: string, forText: boolean = true) => {
       return '';
   }
 };
+
+export const shortenBaseStatsName = (type: string) => {
+  switch (type) {
+    case 'hp':
+      return 'HP';
+    case 'attack':
+      return 'ATK';
+    case 'defense':
+      return 'DEF';
+    case 'special-attack':
+      return 'SATK';
+    case 'special-defense':
+      return 'SDEF';
+    case 'speed':
+      return 'SPD';
+    default:
+      return '';
+  }
+};
+
+export const calcUnits = (data: number) => {
+  return (data / 10).toFixed(1);
+};
