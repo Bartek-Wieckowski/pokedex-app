@@ -1,10 +1,15 @@
+import { BiLoaderAlt } from 'react-icons/bi';
 
-const Loader = () => {
-    return (
-        <div className="flex-center w-full">
-          <img src="/assets/icons/loader.svg" alt="loader" width={24} height={24} />
-        </div>
-      );
-}
+type LoaderProps = {
+  type?: string;
+};
+
+const Loader = ({ type = 'text-5xl' }: LoaderProps) => {
+  return (
+    <div className="flex-center w-full">
+      <BiLoaderAlt className={`animate-spin ${type}`} />
+    </div>
+  );
+};
 
 export default Loader;
