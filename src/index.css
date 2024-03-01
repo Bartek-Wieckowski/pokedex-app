@@ -77,7 +77,7 @@
 
 @layer utilities {
   .main-container {
-    @apply flex flex-col items-center justify-center max-w-[360px] w-full mx-auto h-dvh px-2 sm:px-0;
+    @apply flex flex-col items-center justify-center max-w-[360px] w-full mx-auto my-2 min-h-dvh px-2 sm:px-0;
   }
   .flex-center {
     @apply flex justify-center items-center;
@@ -90,4 +90,24 @@
   .flex-start {
     @apply flex justify-start items-center;
   }
+
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+    border-radius: 2px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: #09090a;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: #5c5c7b;
+    border-radius: 50px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #7878a3;
+  }
+
 }
