@@ -1,12 +1,16 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
-// import { lazy, Suspense } from 'react';
+import { lazy, Suspense } from 'react';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import { ThemeProvider } from './components/shared/ThemeProvider';
+
 import Homepage from './pages/Homepage';
 import AppLayout from './pages/AppLayout';
+import Loader from './components/shared/Loader';
 import ErrorFallback from './components/shared/ErrorFallback';
 import NotFound from './pages/NotFound';
-import { ThemeProvider } from './components/shared/ThemeProvider';
+
+const SinglePokemonpage = lazy(() => import('./pages/SinglePokemonpage'));
 
 const router = createBrowserRouter([
   {
@@ -23,14 +27,14 @@ const router = createBrowserRouter([
         path: '/',
         element: <Homepage />,
       },
-      // {
-      //   path: '/pokemon:name',
-      //   element: (
-      //     <Suspense fallback={<Loader />}>
-      //       <Clientspage />
-      //     </Suspense>
-      //   ),
-      // },
+      {
+        path: '/pokemon/:id',
+        element: (
+          <Suspense fallback={<Loader />}>
+            <SinglePokemonpage />
+          </Suspense>
+        ),
+      },
     ],
   },
 ]);

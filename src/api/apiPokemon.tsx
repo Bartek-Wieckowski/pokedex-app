@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { BASE_API_URL } from './const';
-import { PokemonsType } from '@/types/types';
+import { PokemonsType, singlePokemonType } from '@/types/types';
 
 export async function getAllPokemons(
   offset: number,
@@ -20,6 +20,20 @@ export async function getAllPokemons(
     );
 
     return detailedPokemons;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+}
+
+export async function getSinglePokemon(
+  pokemonId: number
+): Promise<singlePokemonType> {
+  try {
+    const response = await axios.get(`${BASE_API_URL}/pokemon/${pokemonId}`);
+    const singlePokemon = response.data
+    
+    return singlePokemon;
   } catch (error) {
     console.error(error);
     throw error;
