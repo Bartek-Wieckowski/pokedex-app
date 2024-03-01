@@ -6,6 +6,7 @@ import Homepage from './pages/Homepage';
 import AppLayout from './pages/AppLayout';
 import ErrorFallback from './components/shared/ErrorFallback';
 import NotFound from './pages/NotFound';
+import { ThemeProvider } from './components/shared/ThemeProvider';
 
 const router = createBrowserRouter([
   {
@@ -44,12 +45,14 @@ const queryClient = new QueryClient({
 });
 const App = () => {
   return (
-    <QueryClientProvider client={queryClient}>
-      {import.meta.env.MODE === 'development' && (
-        <ReactQueryDevtools initialIsOpen={false} />
-      )}
-      <RouterProvider router={router} />
-    </QueryClientProvider>
+    <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
+      <QueryClientProvider client={queryClient}>
+        {import.meta.env.MODE === 'development' && (
+          <ReactQueryDevtools initialIsOpen={false} />
+        )}
+        <RouterProvider router={router} />
+      </QueryClientProvider>
+    </ThemeProvider>
   );
 };
 

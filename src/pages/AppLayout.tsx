@@ -1,10 +1,13 @@
+import { ModeToggle } from '@/components/shared/ModeToggle';
 import { Outlet } from 'react-router-dom';
 
 const AppLayout = () => {
   return (
     <>
       <main className="main-container">
-      <header>theme toggle icon</header>
+        <header className="w-full text-right mb-2">
+          <ModeToggle />
+        </header>
         <Outlet />
       </main>
     </>
