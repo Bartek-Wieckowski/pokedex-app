@@ -1,28 +1,33 @@
 import { useNavigate, useParams } from 'react-router-dom';
+import { usePokemon } from '@/api/queries/usePokemon';
+import { calcUnits, getPokemonColorClass, shortenBaseStatsName } from '@/helpers/helpers';
 import { BiArrowBack } from 'react-icons/bi';
 import { FaWeightHanging } from 'react-icons/fa';
 import { CiLineHeight } from 'react-icons/ci';
-import { usePokemon } from '@/api/queries/usePokemon';
-import { calcUnits, getPokemonColorClass, shortenBaseStatsName } from '@/helpers/helpers';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
 import { Separator } from '@/components/ui/separator';
 import { Progress } from '@/components/ui/progress';
-import Loader from '@/components/shared/Loader';
 import Error from '@/components/shared/Error';
+import SkeletonApp from '@/components/shared/SkeletonApp';
 
 const SinglePokemonpage = () => {
-  const { id } = useParams();
   const navigate = useNavigate();
-  const { isLoading, singlePokemon, isError } = usePokemon(Number(id));
+  const { id } = useParams();
+  const { singlePokemon, isLoading, isError } = usePokemon(Number(id));
   const pokeBGcolor = singlePokemon?.types[0].type.name as string;
+  const imageUrls = [
+    singlePokemon?.sprites.other['official-artwork'].front_default,
+    singlePokemon?.sprites.other.showdown.front_default,
+    singlePokemon?.sprites.other.showdown.back_default,
+  ];
 
   const handleClickBack = () => {
     navigate('/');
   };
 
   if (isLoading) {
-    return <Loader />;
+    return <SkeletonApp type="pokemonDetails" />;
   }
   if (isError) {
     return <Error msg="Something went wrong..." />;
@@ -41,15 +46,11 @@ const SinglePokemonpage = () => {
         </div>
         <Carousel className="mx-20">
           <CarouselContent>
-            <CarouselItem className="my-auto">
-              <img className="block mx-auto" src={singlePokemon.sprites.other['official-artwork'].front_default} alt="poke1" />
-            </CarouselItem>
-            <CarouselItem className="my-auto">
-              <img className="block mx-auto" src={singlePokemon.sprites.other.showdown.front_default} alt="poke2" />
-            </CarouselItem>
-            <CarouselItem className="my-auto">
-              <img className="block mx-auto" src={singlePokemon.sprites.other.showdown.back_default} alt="poke3" />
-            </CarouselItem>
+            {imageUrls.map((imageUrl, index) => (
+              <CarouselItem key={index} className="my-auto">
+                <img className="block mx-auto" src={imageUrl || '/assets/question_mark.png'} alt={`poke${index + 1}`} />
+              </CarouselItem>
+            ))}
           </CarouselContent>
           <CarouselPrevious />
           <CarouselNext />
