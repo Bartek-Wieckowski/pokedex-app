@@ -1,6 +1,6 @@
 import { BiSolidSun, BiSolidMoon } from 'react-icons/bi';
 import { Button } from '@/components/ui/button';
-import { useTheme } from '@/components/shared/ThemeProvider';
+import { useTheme } from '@/contexts/ThemeProvider';
 
 export function ModeToggle() {
   const { setTheme } = useTheme();
