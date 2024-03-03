@@ -4,13 +4,13 @@ import { getSinglePokemon } from '../apiPokemon';
 
 export function usePokemon(pokemonId: number) {
   const {
-    isLoading,
     data: singlePokemon,
+    isLoading,
     isError,
   } = useQuery({
     queryKey: [QUERY_KEYS.singlePokemon, pokemonId],
     queryFn: () => getSinglePokemon(pokemonId),
   });
 
-  return { isLoading, singlePokemon, isError };
+  return { singlePokemon, isLoading, isError };
 }

@@ -2,7 +2,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { lazy, Suspense } from 'react';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
-import { ThemeProvider } from './components/shared/ThemeProvider';
+import { ThemeProvider } from './contexts/ThemeProvider';
 
 import Homepage from './pages/Homepage';
 import AppLayout from './pages/AppLayout';

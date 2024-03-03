@@ -8,7 +8,7 @@ export type PokemonsType = {
   types: PokemonSpecies[];
 };
 
-export type singlePokemonType = {
+export type SinglePokemonType = {
   id: number;
   name: string;
   sprites: {
@@ -37,9 +37,19 @@ export type PokemonStats = {
   };
 };
 
-type PokemonSpecies = {
+export type PokemonSpecies = {
   type: {
     name: string;
     url: string;
   };
 };
+
+export type PokemonByCategoryType = {
+  pokemon: {
+    name: string;
+    url: string;
+  };
+};
+
+
+// TODO: dodac do innych "type"

@@ -6,7 +6,7 @@ type LoaderProps = {
 
 const Loader = ({ type = 'text-5xl' }: LoaderProps) => {
   return (
-    <div className="flex-center w-full">
+    <div className="flex-center w-full h-full">
       <BiLoaderAlt className={`animate-spin ${type}`} />
     </div>
   );
