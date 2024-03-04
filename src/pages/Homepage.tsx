@@ -9,6 +9,8 @@ import Error from '@/components/shared/Error';
 import PokemonList from '@/components/shared/PokemonList';
 import SearchBar from '@/components/shared/SearchBar';
 import SkeletonApp from '@/components/shared/SkeletonApp';
+import { motion } from 'framer-motion';
+import { MOTION_VARIANTS } from '@/helpers/const';
 
 const Homepage = () => {
   const { pokemons, isLoading, isFetching, isError, handleLoadMore, isButtonLoading } = usePokemons();
@@ -34,7 +36,14 @@ const Homepage = () => {
 
   return (
     <>
-      <section className="bg-rose-600 w-full flex flex-col rounded-sm">
+      <motion.section
+        className="bg-rose-600 w-full flex flex-col rounded-sm"
+        custom={{ direction: 'backward' }}
+        initial="initial"
+        animate="in"
+        exit="out"
+        variants={MOTION_VARIANTS}
+      >
         <HeaderApp />
         <SearchBar />
 
@@ -57,7 +66,7 @@ const Homepage = () => {
             )}
           </Button>
         </div>
-      </section>
+      </motion.section>
     </>
   );
 };

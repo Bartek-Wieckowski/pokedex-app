@@ -10,6 +10,8 @@ import { Separator } from '@/components/ui/separator';
 import { Progress } from '@/components/ui/progress';
 import Error from '@/components/shared/Error';
 import SkeletonApp from '@/components/shared/SkeletonApp';
+import { motion } from 'framer-motion';
+import { MOTION_VARIANTS } from '@/helpers/const';
 
 const SinglePokemonpage = () => {
   const navigate = useNavigate();
@@ -38,7 +40,14 @@ const SinglePokemonpage = () => {
 
   return (
     <>
-      <section className={`${getPokemonColorClass(pokeBGcolor, false)} w-full flex flex-col rounded-sm`}>
+      <motion.section
+        className={`${getPokemonColorClass(pokeBGcolor, false)} w-full flex flex-col rounded-sm`}
+        custom={{ direction: 'forward' }}
+        initial="initial"
+        animate="in"
+        exit="out"
+        variants={MOTION_VARIANTS}
+      >
         <div className="flex-between p-3">
           <BiArrowBack className="text-2xl cursor-pointer" onClick={() => handleClickBack()} />
           <h1 className="text-2xl uppercase font-semibold">{singlePokemon.name}</h1>
@@ -96,7 +105,7 @@ const SinglePokemonpage = () => {
             <div className="flex-between"></div>
           </CardContent>
         </Card>
-      </section>
+      </motion.section>
     </>
   );
 };
