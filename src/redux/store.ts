@@ -5,6 +5,10 @@ const store = configureStore({
   reducer: {
     pokemons: pokemonsReducer,
   },
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware({
+    immutableCheck: false,
+    serializableCheck: false,
+  })
 });
 
 export default store;
