@@ -1,5 +1,5 @@
-![Design preview](./assets/PokedexApp1.mp4)
-![Design preview](./assets/PokedexApp2.mp4)
+![Design preview](public/assets/PokedexApp1.mp4)
+![Design preview](public/assets/PokedexApp2.mp4)
 
 # React + TypeScript + Vite
 
