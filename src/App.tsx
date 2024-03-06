@@ -6,7 +6,7 @@ import Loader from './components/shared/Loader';
 
 const App = () => {
   return (
-    <Suspense fallback={<Loader />}>
+    <Suspense fallback={<Loader fallbackLoader={true} />}>
       <AllTheProviders>
         <RouterProvider router={router} />
       </AllTheProviders>
