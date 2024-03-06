@@ -1,9 +1,9 @@
 import { getPokemonColorClass } from '@/helpers/helpers';
-import { PokemonsType } from '@/types/types';
+import { Pokemons } from '@/types/types';
 import { Link } from 'react-router-dom';
 
 type PokemonItemProps = {
-  pokemon: PokemonsType;
+  pokemon: Pokemons;
 };
 
 const PokemonItem = ({ pokemon }: PokemonItemProps) => {

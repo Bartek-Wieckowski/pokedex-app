@@ -1,14 +1,14 @@
 import axios from 'axios';
 import { BASE_API_URL } from './const';
-import { PokemonByCategoryType, PokemonsType, SinglePokemonType } from '@/types/types';
+import { Pokemons, SinglePokemon, PokemonByCategory } from '@/types/types';
 
-export async function getAllPokemons(offset: number, limit: number): Promise<PokemonsType[]> {
+export async function getAllPokemons(limit: number, offset: number): Promise<Pokemons[]> {
   try {
-    const response = await axios.get(`${BASE_API_URL}/pokemon/?offset=${offset}&limit=${limit}`);
+    const response = await axios.get(`${BASE_API_URL}/pokemon/?limit=${limit}&offset=${offset}`);
     const pokemons = response.data.results;
 
     const detailedPokemons = await Promise.all(
-      pokemons.map(async (pokemon: PokemonsType) => {
+      pokemons.map(async (pokemon: Pokemons) => {
         const detailedResponse = await axios.get(pokemon.url);
         return detailedResponse.data;
       })
@@ -21,7 +21,7 @@ export async function getAllPokemons(offset: number, limit: number): Promise<Pok
   }
 }
 
-export async function getSinglePokemon(pokemonId: number): Promise<SinglePokemonType> {
+export async function getSinglePokemon(pokemonId: number): Promise<SinglePokemon> {
   try {
     const response = await axios.get(`${BASE_API_URL}/pokemon/${pokemonId}`);
     const singlePokemon = response.data;
@@ -33,7 +33,7 @@ export async function getSinglePokemon(pokemonId: number): Promise<SinglePokemon
   }
 }
 
-export async function getPokemonByName(value: string): Promise<PokemonsType[]> {
+export async function getPokemonByName(value: string): Promise<Pokemons[]> {
   try {
     const response = await axios.get(`${BASE_API_URL}/pokemon/${value}`);
     const pokemonByName = response.data;
@@ -45,13 +45,13 @@ export async function getPokemonByName(value: string): Promise<PokemonsType[]> {
   }
 }
 
-export async function getPokemonByType(value: string): Promise<PokemonsType[]> {
+export async function getPokemonByType(value: string): Promise<Pokemons[]> {
   try {
     const response = await axios.get(`${BASE_API_URL}/type/${value}`);
     const pokemons = response.data.pokemon;
 
     const detailedPokemons = await Promise.all(
-      pokemons.map(async (pokemon: PokemonByCategoryType) => {
+      pokemons.map(async (pokemon: PokemonByCategory) => {
         const detailedResponse = await axios.get(pokemon.pokemon.url);
         return detailedResponse.data;
       })
