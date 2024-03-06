@@ -1,4 +1,4 @@
-export const ROUTES={
-        home: "/",
-        pokemonDetails: (id:string)=>`/pokemon/${id}`
-}
+export const ROUTES = {
+  home: '/',
+  pokemonDetails: (id: string) => `/pokemon/${id}`,
+};
