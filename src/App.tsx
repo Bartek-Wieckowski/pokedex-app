@@ -1,12 +1,16 @@
 import { RouterProvider } from 'react-router-dom';
 import { AllTheProviders } from './AllTheProviders';
 import { router } from './routes/routes';
+import { Suspense } from 'react';
+import Loader from './components/shared/Loader';
 
 const App = () => {
   return (
-    <AllTheProviders>
-      <RouterProvider router={router} />
-    </AllTheProviders>
+    <Suspense fallback={<Loader />}>
+      <AllTheProviders>
+        <RouterProvider router={router} />
+      </AllTheProviders>
+    </Suspense>
   );
 };
 
