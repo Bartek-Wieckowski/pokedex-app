@@ -4,3 +4,5 @@ export const formSchema = z.object({
       message: "Text must be at least 3 characters or try to click load more",
     }),
   });
+
+export type SearchSchema= z.infer<typeof formSchema>
