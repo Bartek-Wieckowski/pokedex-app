@@ -1,5 +1,4 @@
 import { motion } from 'framer-motion';
-import { useMemo } from 'react';
 import { usePokemonByName } from '@/api/queries/usePokemonByName';
 import { usePokemonByType } from '@/api/queries/usePokemonByType';
 import { usePokemons } from '@/api/queries/usePokemons';
@@ -26,20 +25,12 @@ const Homepage = () => {
   const isLoadingProcess = loadingPokemonByName || loadingPokemonByType;
   const isErrorProcess = isErrorPokemonByName || isErrorPokemonByType;
 
-  const memoizedPokemonByName = useMemo(() => {
-    return pokemonByName;
-  }, [pokemonByName]);
-
-  const memoizedPokemonByType = useMemo(() => {
-    return pokemonByType;
-  }, [pokemonByType]);
-
   let pokemonsVisible;
 
-  if (memoizedPokemonByName) {
-    pokemonsVisible = memoizedPokemonByName;
-  } else if (memoizedPokemonByType) {
-    pokemonsVisible = memoizedPokemonByType;
+  if (pokemonByName) {
+    pokemonsVisible = pokemonByName;
+  } else if (pokemonByType) {
+    pokemonsVisible = pokemonByType;
   } else {
     pokemonsVisible = pokemons?.pages.flat() as Pokemons[];
   }
